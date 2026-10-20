@@ -1,0 +1,598 @@
+2025-08-01 12:36:16,404   INFO  **********************Start logging**********************
+2025-08-01 12:36:16,404   INFO  CUDA_VISIBLE_DEVICES=ALL
+2025-08-01 12:36:16,404   INFO  Training with a single process
+2025-08-01 12:36:16,404   INFO  cfg_file         tools/cfgs/kitti_models/esformer.yaml
+2025-08-01 12:36:16,404   INFO  batch_size       2
+2025-08-01 12:36:16,404   INFO  epochs           80
+2025-08-01 12:36:16,404   INFO  workers          4
+2025-08-01 12:36:16,404   INFO  extra_tag        default
+2025-08-01 12:36:16,404   INFO  ckpt             None
+2025-08-01 12:36:16,404   INFO  pretrained_model None
+2025-08-01 12:36:16,404   INFO  launcher         none
+2025-08-01 12:36:16,404   INFO  tcp_port         18888
+2025-08-01 12:36:16,404   INFO  sync_bn          False
+2025-08-01 12:36:16,404   INFO  fix_random_seed  False
+2025-08-01 12:36:16,404   INFO  ckpt_save_interval 1
+2025-08-01 12:36:16,404   INFO  local_rank       None
+2025-08-01 12:36:16,404   INFO  max_ckpt_save_num 30
+2025-08-01 12:36:16,404   INFO  merge_all_iters_to_one_epoch False
+2025-08-01 12:36:16,404   INFO  set_cfgs         None
+2025-08-01 12:36:16,404   INFO  max_waiting_mins 0
+2025-08-01 12:36:16,404   INFO  start_epoch      0
+2025-08-01 12:36:16,404   INFO  num_epochs_to_eval 0
+2025-08-01 12:36:16,404   INFO  save_to_file     False
+2025-08-01 12:36:16,404   INFO  use_tqdm_to_record False
+2025-08-01 12:36:16,404   INFO  logger_iter_interval 50
+2025-08-01 12:36:16,404   INFO  ckpt_save_time_interval 300
+2025-08-01 12:36:16,404   INFO  wo_gpu_stat      False
+2025-08-01 12:36:16,404   INFO  use_amp          False
+2025-08-01 12:36:16,405   INFO  cfg.ROOT_DIR: /workspace/OpenPCDet
+2025-08-01 12:36:16,405   INFO  cfg.LOCAL_RANK: 0
+2025-08-01 12:36:16,405   INFO  cfg.DATA_PATH: data/kitti
+2025-08-01 12:36:16,405   INFO  cfg.CLASS_NAMES: ['Car', 'Pedestrian', 'Cyclist']
+2025-08-01 12:36:16,405   INFO  ----------- DATA_CONFIG -----------
+2025-08-01 12:36:16,405   INFO  cfg.DATA_CONFIG.DATASET: KittiDataset
+2025-08-01 12:36:16,405   INFO  cfg.DATA_CONFIG.DATA_PATH: data/kitti
+2025-08-01 12:36:16,405   INFO  cfg.DATA_CONFIG.POINT_CLOUD_RANGE: [0, -40, -3, 70.4, 40, 1]
+2025-08-01 12:36:16,405   INFO  ----------- DATA_SPLIT -----------
+2025-08-01 12:36:16,405   INFO  cfg.DATA_CONFIG.DATA_SPLIT.train: train
+2025-08-01 12:36:16,405   INFO  cfg.DATA_CONFIG.DATA_SPLIT.test: val
+2025-08-01 12:36:16,405   INFO  ----------- INFO_PATH -----------
+2025-08-01 12:36:16,405   INFO  cfg.DATA_CONFIG.INFO_PATH.train: ['kitti_infos_train.pkl']
+2025-08-01 12:36:16,405   INFO  cfg.DATA_CONFIG.INFO_PATH.test: ['kitti_infos_val.pkl']
+2025-08-01 12:36:16,405   INFO  cfg.DATA_CONFIG.GET_ITEM_LIST: ['points']
+2025-08-01 12:36:16,405   INFO  cfg.DATA_CONFIG.FOV_POINTS_ONLY: True
+2025-08-01 12:36:16,405   INFO  ----------- DATA_AUGMENTOR -----------
+2025-08-01 12:36:16,405   INFO  cfg.DATA_CONFIG.DATA_AUGMENTOR.DISABLE_AUG_LIST: ['placeholder']
+2025-08-01 12:36:16,405   INFO  cfg.DATA_CONFIG.DATA_AUGMENTOR.AUG_CONFIG_LIST: [{'NAME': 'random_world_flip', 'ALONG_AXIS_LIST': ['x']}, {'NAME': 'random_world_rotation', 'WORLD_ROT_ANGLE': [-0.78539816, 0.78539816]}, {'NAME': 'random_world_scaling', 'WORLD_SCALE_RANGE': [0.95, 1.05]}]
+2025-08-01 12:36:16,405   INFO  ----------- POINT_FEATURE_ENCODING -----------
+2025-08-01 12:36:16,405   INFO  cfg.DATA_CONFIG.POINT_FEATURE_ENCODING.encoding_type: absolute_coordinates_encoding
+2025-08-01 12:36:16,405   INFO  cfg.DATA_CONFIG.POINT_FEATURE_ENCODING.used_feature_list: ['x', 'y', 'z', 'intensity']
+2025-08-01 12:36:16,405   INFO  cfg.DATA_CONFIG.POINT_FEATURE_ENCODING.src_feature_list: ['x', 'y', 'z', 'intensity']
+2025-08-01 12:36:16,405   INFO  cfg.DATA_CONFIG.DATA_PROCESSOR: [{'NAME': 'mask_points_and_boxes_outside_range', 'REMOVE_OUTSIDE_BOXES': True}, {'NAME': 'shuffle_points', 'SHUFFLE_ENABLED': {'train': True, 'test': False}}, {'NAME': 'transform_points_to_voxels', 'VOXEL_SIZE': [0.16, 0.16, 4], 'MAX_POINTS_PER_VOXEL': 100, 'MAX_NUMBER_OF_VOXELS': {'train': 16000, 'test': 40000}}]
+2025-08-01 12:36:16,405   INFO  cfg.DATA_CONFIG._BASE_CONFIG_: tools/cfgs/dataset_configs/kitti_dataset.yaml
+2025-08-01 12:36:16,405   INFO  ----------- MODEL -----------
+2025-08-01 12:36:16,405   INFO  cfg.MODEL.NAME: ESFormer
+2025-08-01 12:36:16,405   INFO  cfg.MODEL.USE_CHECKPOINT: False
+2025-08-01 12:36:16,405   INFO  ----------- VFE -----------
+2025-08-01 12:36:16,405   INFO  cfg.MODEL.VFE.NAME: PillarVFE
+2025-08-01 12:36:16,405   INFO  cfg.MODEL.VFE.WITH_DISTANCE: False
+2025-08-01 12:36:16,405   INFO  cfg.MODEL.VFE.USE_ABSLOTE_XYZ: True
+2025-08-01 12:36:16,405   INFO  cfg.MODEL.VFE.USE_NORM: True
+2025-08-01 12:36:16,405   INFO  cfg.MODEL.VFE.NUM_FILTERS: [64]
+2025-08-01 12:36:16,405   INFO  ----------- MAP_TO_BEV -----------
+2025-08-01 12:36:16,405   INFO  cfg.MODEL.MAP_TO_BEV.NAME: PointPillarScatter
+2025-08-01 12:36:16,405   INFO  cfg.MODEL.MAP_TO_BEV.NUM_BEV_FEATURES: 64
+2025-08-01 12:36:16,405   INFO  ----------- PCES_TOOL -----------
+2025-08-01 12:36:16,405   INFO  cfg.MODEL.PCES_TOOL.NAME: PCESTool
+2025-08-01 12:36:16,405   INFO  cfg.MODEL.PCES_TOOL.HIDDEN_DIM: 64
+2025-08-01 12:36:16,405   INFO  cfg.MODEL.PCES_TOOL.NUM_HEADS: 8
+2025-08-01 12:36:16,405   INFO  cfg.MODEL.PCES_TOOL.MAX_POINTS_PER_PILLAR: 100
+2025-08-01 12:36:16,405   INFO  ----------- BACKBONE_2D -----------
+2025-08-01 12:36:16,405   INFO  cfg.MODEL.BACKBONE_2D.NAME: SwinTransformerPlus
+2025-08-01 12:36:16,405   INFO  cfg.MODEL.BACKBONE_2D.INPUT_CHANNELS: 64
+2025-08-01 12:36:16,405   INFO  cfg.MODEL.BACKBONE_2D.PATCH_SIZE: [4, 4]
+2025-08-01 12:36:16,405   INFO  cfg.MODEL.BACKBONE_2D.EMBED_DIM: 96
+2025-08-01 12:36:16,405   INFO  cfg.MODEL.BACKBONE_2D.DEPTHS: [2, 2, 6, 2]
+2025-08-01 12:36:16,405   INFO  cfg.MODEL.BACKBONE_2D.NUM_HEADS: [3, 6, 12, 24]
+2025-08-01 12:36:16,405   INFO  cfg.MODEL.BACKBONE_2D.WINDOW_SIZE: 7
+2025-08-01 12:36:16,405   INFO  cfg.MODEL.BACKBONE_2D.MLP_RATIO: 4.0
+2025-08-01 12:36:16,405   INFO  cfg.MODEL.BACKBONE_2D.QKV_BIAS: True
+2025-08-01 12:36:16,405   INFO  cfg.MODEL.BACKBONE_2D.DROP_RATE: 0.0
+2025-08-01 12:36:16,405   INFO  cfg.MODEL.BACKBONE_2D.ATTN_DROP_RATE: 0.0
+2025-08-01 12:36:16,405   INFO  cfg.MODEL.BACKBONE_2D.DROP_PATH_RATE: 0.1
+2025-08-01 12:36:16,405   INFO  ----------- DENSE_HEAD -----------
+2025-08-01 12:36:16,405   INFO  cfg.MODEL.DENSE_HEAD.NAME: CenterHead
+2025-08-01 12:36:16,405   INFO  cfg.MODEL.DENSE_HEAD.CLASS_AGNOSTIC: False
+2025-08-01 12:36:16,405   INFO  cfg.MODEL.DENSE_HEAD.INPUT_FEATURES: 768
+2025-08-01 12:36:16,405   INFO  ----------- TARGET_ASSIGNER_CONFIG -----------
+2025-08-01 12:36:16,405   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.FEATURE_MAP_STRIDE: 8
+2025-08-01 12:36:16,406   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.NUM_MAX_OBJS: 500
+2025-08-01 12:36:16,406   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.GAUSSIAN_OVERLAP: 0.1
+2025-08-01 12:36:16,406   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.MIN_RADIUS: 2
+2025-08-01 12:36:16,406   INFO  cfg.MODEL.DENSE_HEAD.CLASS_NAMES_EACH_HEAD: [['Car'], ['Pedestrian'], ['Cyclist']]
+2025-08-01 12:36:16,406   INFO  cfg.MODEL.DENSE_HEAD.SHARED_CONV_CHANNEL: 256
+2025-08-01 12:36:16,406   INFO  cfg.MODEL.DENSE_HEAD.NUM_HM_CONV: 2
+2025-08-01 12:36:16,406   INFO  ----------- SEPARATE_HEAD_CFG -----------
+2025-08-01 12:36:16,406   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_ORDER: ['center', 'center_z', 'dim', 'rot', 'iou']
+2025-08-01 12:36:16,406   INFO  ----------- HEAD_DICT -----------
+2025-08-01 12:36:16,406   INFO  ----------- center -----------
+2025-08-01 12:36:16,406   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.center.out_channels: 2
+2025-08-01 12:36:16,406   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.center.num_conv: 2
+2025-08-01 12:36:16,406   INFO  ----------- center_z -----------
+2025-08-01 12:36:16,406   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.center_z.out_channels: 1
+2025-08-01 12:36:16,406   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.center_z.num_conv: 2
+2025-08-01 12:36:16,406   INFO  ----------- dim -----------
+2025-08-01 12:36:16,406   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.dim.out_channels: 3
+2025-08-01 12:36:16,406   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.dim.num_conv: 2
+2025-08-01 12:36:16,406   INFO  ----------- rot -----------
+2025-08-01 12:36:16,406   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.rot.out_channels: 2
+2025-08-01 12:36:16,406   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.rot.num_conv: 2
+2025-08-01 12:36:16,406   INFO  ----------- iou -----------
+2025-08-01 12:36:16,406   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.iou.out_channels: 1
+2025-08-01 12:36:16,406   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.iou.num_conv: 2
+2025-08-01 12:36:16,406   INFO  ----------- LOSS_CONFIG -----------
+2025-08-01 12:36:16,406   INFO  ----------- LOSS_WEIGHTS -----------
+2025-08-01 12:36:16,406   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.cls_weight: 1.0
+2025-08-01 12:36:16,406   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.loc_weight: 2.0
+2025-08-01 12:36:16,406   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.code_weights: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+2025-08-01 12:36:16,406   INFO  ----------- POST_PROCESSING -----------
+2025-08-01 12:36:16,406   INFO  cfg.MODEL.DENSE_HEAD.POST_PROCESSING.SCORE_THRESH: 0.1
+2025-08-01 12:36:16,406   INFO  cfg.MODEL.DENSE_HEAD.POST_PROCESSING.POST_CENTER_LIMIT_RANGE: [0, -40.0, -5.0, 70.4, 40.0, 5.0]
+2025-08-01 12:36:16,406   INFO  cfg.MODEL.DENSE_HEAD.POST_PROCESSING.MAX_OBJ_PER_SAMPLE: 500
+2025-08-01 12:36:16,406   INFO  ----------- NMS_CONFIG -----------
+2025-08-01 12:36:16,406   INFO  cfg.MODEL.DENSE_HEAD.POST_PROCESSING.NMS_CONFIG.NMS_TYPE: nms_gpu
+2025-08-01 12:36:16,406   INFO  cfg.MODEL.DENSE_HEAD.POST_PROCESSING.NMS_CONFIG.NMS_THRESH: 0.01
+2025-08-01 12:36:16,406   INFO  cfg.MODEL.DENSE_HEAD.POST_PROCESSING.NMS_CONFIG.NMS_PRE_MAXSIZE: 4096
+2025-08-01 12:36:16,406   INFO  cfg.MODEL.DENSE_HEAD.POST_PROCESSING.NMS_CONFIG.NMS_POST_MAXSIZE: 500
+2025-08-01 12:36:16,406   INFO  ----------- POST_PROCESSING -----------
+2025-08-01 12:36:16,406   INFO  cfg.MODEL.POST_PROCESSING.RECALL_THRESH_LIST: [0.3, 0.5, 0.7]
+2025-08-01 12:36:16,406   INFO  cfg.MODEL.POST_PROCESSING.SCORE_THRESH: 0.1
+2025-08-01 12:36:16,406   INFO  cfg.MODEL.POST_PROCESSING.OUTPUT_RAW_SCORE: False
+2025-08-01 12:36:16,406   INFO  ----------- NMS_CONFIG -----------
+2025-08-01 12:36:16,406   INFO  cfg.MODEL.POST_PROCESSING.NMS_CONFIG.MULTI_CLASSES_NMS: False
+2025-08-01 12:36:16,406   INFO  cfg.MODEL.POST_PROCESSING.NMS_CONFIG.NMS_TYPE: nms_gpu
+2025-08-01 12:36:16,406   INFO  cfg.MODEL.POST_PROCESSING.NMS_CONFIG.NMS_THRESH: 0.01
+2025-08-01 12:36:16,406   INFO  cfg.MODEL.POST_PROCESSING.NMS_CONFIG.NMS_PRE_MAXSIZE: 4096
+2025-08-01 12:36:16,406   INFO  cfg.MODEL.POST_PROCESSING.NMS_CONFIG.NMS_POST_MAXSIZE: 500
+2025-08-01 12:36:16,406   INFO  ----------- OPTIMIZATION -----------
+2025-08-01 12:36:16,406   INFO  cfg.OPTIMIZATION.BATCH_SIZE_PER_GPU: 2
+2025-08-01 12:36:16,406   INFO  cfg.OPTIMIZATION.NUM_EPOCHS: 80
+2025-08-01 12:36:16,406   INFO  cfg.OPTIMIZATION.OPTIMIZER: adam_onecycle
+2025-08-01 12:36:16,406   INFO  cfg.OPTIMIZATION.LR: 0.003
+2025-08-01 12:36:16,406   INFO  cfg.OPTIMIZATION.WEIGHT_DECAY: 0.01
+2025-08-01 12:36:16,406   INFO  cfg.OPTIMIZATION.MOMENTUM: 0.9
+2025-08-01 12:36:16,406   INFO  cfg.OPTIMIZATION.MOMS: [0.95, 0.85]
+2025-08-01 12:36:16,406   INFO  cfg.OPTIMIZATION.PCT_START: 0.4
+2025-08-01 12:36:16,406   INFO  cfg.OPTIMIZATION.DIV_FACTOR: 10
+2025-08-01 12:36:16,406   INFO  cfg.OPTIMIZATION.DECAY_STEP_LIST: [35, 45]
+2025-08-01 12:36:16,406   INFO  cfg.OPTIMIZATION.LR_DECAY: 0.1
+2025-08-01 12:36:16,406   INFO  cfg.OPTIMIZATION.LR_CLIP: 1e-07
+2025-08-01 12:36:16,406   INFO  cfg.OPTIMIZATION.LR_WARMUP: False
+2025-08-01 12:36:16,406   INFO  cfg.OPTIMIZATION.WARMUP_EPOCH: 1
+2025-08-01 12:36:16,407   INFO  cfg.OPTIMIZATION.GRAD_NORM_CLIP: 10
+2025-08-01 12:36:16,407   INFO  cfg.TAG: esformer
+2025-08-01 12:36:16,407   INFO  cfg.EXP_GROUP_PATH: cfgs/kitti_models
+2025-08-01 12:36:16,416   INFO  ----------- Create dataloader & network & optimizer -----------
+2025-08-01 12:36:16,417   INFO  Loading KITTI dataset
+2025-08-01 12:36:16,417   INFO  Total samples for KITTI dataset: 15
+2025-08-01 12:36:16,969   INFO  ----------- Model ESFormer created, param count: 40077272 -----------
+2025-08-01 12:36:16,969   INFO  ESFormer(
+  (vfe): PillarVFE(
+    (pfn_layers): ModuleList(
+      (0): PFNLayer(
+        (linear): Linear(in_features=10, out_features=64, bias=False)
+        (norm): BatchNorm1d(64, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      )
+    )
+  )
+  (backbone_3d): None
+  (map_to_bev_module): PointPillarScatter()
+  (pfe): None
+  (backbone_2d): SwinTransformerPlus(
+    (patch_embed): Conv2d(64, 96, kernel_size=(4, 4), stride=(4, 4))
+    (pos_drop): Dropout(p=0.0, inplace=False)
+    (layers): ModuleList(
+      (0): BasicLayer(
+        (blocks): ModuleList(
+          (0): SwinTransformerBlock(
+            (norm1): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              (qkv): Linear(in_features=96, out_features=288, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=96, out_features=96, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): Identity()
+            (norm2): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+            (mlp): Sequential(
+              (0): Linear(in_features=96, out_features=384, bias=True)
+              (1): GELU(approximate='none')
+              (2): Dropout(p=0.0, inplace=False)
+              (3): Linear(in_features=384, out_features=96, bias=True)
+              (4): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (1): SwinTransformerBlock(
+            (norm1): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              (qkv): Linear(in_features=96, out_features=288, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=96, out_features=96, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): Dropout(p=0.00909090880304575, inplace=False)
+            (norm2): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+            (mlp): Sequential(
+              (0): Linear(in_features=96, out_features=384, bias=True)
+              (1): GELU(approximate='none')
+              (2): Dropout(p=0.0, inplace=False)
+              (3): Linear(in_features=384, out_features=96, bias=True)
+              (4): Dropout(p=0.0, inplace=False)
+            )
+          )
+        )
+        (downsample): PatchMerging(
+          (reduction): Linear(in_features=384, out_features=192, bias=False)
+          (norm): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+        )
+      )
+      (1): BasicLayer(
+        (blocks): ModuleList(
+          (0): SwinTransformerBlock(
+            (norm1): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              (qkv): Linear(in_features=192, out_features=576, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=192, out_features=192, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): Dropout(p=0.0181818176060915, inplace=False)
+            (norm2): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+            (mlp): Sequential(
+              (0): Linear(in_features=192, out_features=768, bias=True)
+              (1): GELU(approximate='none')
+              (2): Dropout(p=0.0, inplace=False)
+              (3): Linear(in_features=768, out_features=192, bias=True)
+              (4): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (1): SwinTransformerBlock(
+            (norm1): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              (qkv): Linear(in_features=192, out_features=576, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=192, out_features=192, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): Dropout(p=0.027272727340459824, inplace=False)
+            (norm2): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+            (mlp): Sequential(
+              (0): Linear(in_features=192, out_features=768, bias=True)
+              (1): GELU(approximate='none')
+              (2): Dropout(p=0.0, inplace=False)
+              (3): Linear(in_features=768, out_features=192, bias=True)
+              (4): Dropout(p=0.0, inplace=False)
+            )
+          )
+        )
+        (downsample): PatchMerging(
+          (reduction): Linear(in_features=768, out_features=384, bias=False)
+          (norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        )
+      )
+      (2): BasicLayer(
+        (blocks): ModuleList(
+          (0): SwinTransformerBlock(
+            (norm1): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              (qkv): Linear(in_features=384, out_features=1152, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=384, out_features=384, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): Dropout(p=0.036363635212183, inplace=False)
+            (norm2): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+            (mlp): Sequential(
+              (0): Linear(in_features=384, out_features=1536, bias=True)
+              (1): GELU(approximate='none')
+              (2): Dropout(p=0.0, inplace=False)
+              (3): Linear(in_features=1536, out_features=384, bias=True)
+              (4): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (1): SwinTransformerBlock(
+            (norm1): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              (qkv): Linear(in_features=384, out_features=1152, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=384, out_features=384, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): Dropout(p=0.045454543083906174, inplace=False)
+            (norm2): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+            (mlp): Sequential(
+              (0): Linear(in_features=384, out_features=1536, bias=True)
+              (1): GELU(approximate='none')
+              (2): Dropout(p=0.0, inplace=False)
+              (3): Linear(in_features=1536, out_features=384, bias=True)
+              (4): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (2): SwinTransformerBlock(
+            (norm1): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              (qkv): Linear(in_features=384, out_features=1152, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=384, out_features=384, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): Dropout(p=0.054545458406209946, inplace=False)
+            (norm2): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+            (mlp): Sequential(
+              (0): Linear(in_features=384, out_features=1536, bias=True)
+              (1): GELU(approximate='none')
+              (2): Dropout(p=0.0, inplace=False)
+              (3): Linear(in_features=1536, out_features=384, bias=True)
+              (4): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (3): SwinTransformerBlock(
+            (norm1): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              (qkv): Linear(in_features=384, out_features=1152, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=384, out_features=384, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): Dropout(p=0.06363636255264282, inplace=False)
+            (norm2): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+            (mlp): Sequential(
+              (0): Linear(in_features=384, out_features=1536, bias=True)
+              (1): GELU(approximate='none')
+              (2): Dropout(p=0.0, inplace=False)
+              (3): Linear(in_features=1536, out_features=384, bias=True)
+              (4): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (4): SwinTransformerBlock(
+            (norm1): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              (qkv): Linear(in_features=384, out_features=1152, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=384, out_features=384, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): Dropout(p=0.0727272778749466, inplace=False)
+            (norm2): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+            (mlp): Sequential(
+              (0): Linear(in_features=384, out_features=1536, bias=True)
+              (1): GELU(approximate='none')
+              (2): Dropout(p=0.0, inplace=False)
+              (3): Linear(in_features=1536, out_features=384, bias=True)
+              (4): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (5): SwinTransformerBlock(
+            (norm1): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              (qkv): Linear(in_features=384, out_features=1152, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=384, out_features=384, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): Dropout(p=0.08181818574666977, inplace=False)
+            (norm2): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+            (mlp): Sequential(
+              (0): Linear(in_features=384, out_features=1536, bias=True)
+              (1): GELU(approximate='none')
+              (2): Dropout(p=0.0, inplace=False)
+              (3): Linear(in_features=1536, out_features=384, bias=True)
+              (4): Dropout(p=0.0, inplace=False)
+            )
+          )
+        )
+        (downsample): PatchMerging(
+          (reduction): Linear(in_features=1536, out_features=768, bias=False)
+          (norm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        )
+      )
+      (3): BasicLayer(
+        (blocks): ModuleList(
+          (0): SwinTransformerBlock(
+            (norm1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              (qkv): Linear(in_features=768, out_features=2304, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=768, out_features=768, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): Dropout(p=0.09090909361839294, inplace=False)
+            (norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (mlp): Sequential(
+              (0): Linear(in_features=768, out_features=3072, bias=True)
+              (1): GELU(approximate='none')
+              (2): Dropout(p=0.0, inplace=False)
+              (3): Linear(in_features=3072, out_features=768, bias=True)
+              (4): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (1): SwinTransformerBlock(
+            (norm1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              (qkv): Linear(in_features=768, out_features=2304, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=768, out_features=768, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): Dropout(p=0.10000000149011612, inplace=False)
+            (norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (mlp): Sequential(
+              (0): Linear(in_features=768, out_features=3072, bias=True)
+              (1): GELU(approximate='none')
+              (2): Dropout(p=0.0, inplace=False)
+              (3): Linear(in_features=3072, out_features=768, bias=True)
+              (4): Dropout(p=0.0, inplace=False)
+            )
+          )
+        )
+      )
+    )
+  )
+  (dense_head): CenterHead(
+    (shared_conv): Sequential(
+      (0): Conv2d(768, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU()
+    )
+    (heads_list): ModuleList(
+      (0): SeparateHead(
+        (center): Sequential(
+          (0): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(256, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (center_z): Sequential(
+          (0): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(256, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (dim): Sequential(
+          (0): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(256, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (rot): Sequential(
+          (0): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(256, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (iou): Sequential(
+          (0): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(256, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (hm): Sequential(
+          (0): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(256, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+      )
+      (1): SeparateHead(
+        (center): Sequential(
+          (0): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(256, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (center_z): Sequential(
+          (0): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(256, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (dim): Sequential(
+          (0): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(256, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (rot): Sequential(
+          (0): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(256, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (iou): Sequential(
+          (0): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(256, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (hm): Sequential(
+          (0): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(256, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+      )
+      (2): SeparateHead(
+        (center): Sequential(
+          (0): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(256, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (center_z): Sequential(
+          (0): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(256, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (dim): Sequential(
+          (0): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(256, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (rot): Sequential(
+          (0): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(256, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (iou): Sequential(
+          (0): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(256, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (hm): Sequential(
+          (0): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(256, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+      )
+    )
+    (hm_loss_func): FocalLossCenterNet()
+    (reg_loss_func): RegLossCenterNet()
+  )
+  (point_head): None
+  (roi_head): None
+)
+2025-08-01 12:36:16,971   INFO  **********************Start training cfgs/kitti_models/esformer(default)**********************
